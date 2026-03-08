@@ -12,5 +12,6 @@ RUN wget https://files.ballistica.net/bombsquad/builds/BombSquad_Server_Linux_x8
 ENV LD_LIBRARY_PATH=/usr/local/lib
 RUN echo 'config["port"] = 10000' > ./BombSquad_Server_Linux_x86_64_1.7.61/config.py
 
-# CHANGE: Run the server first, and let the web server run in the background (nohup)
-CMD nohup python3 -m http.server $PORT & ./BombSquad_Server_Linux_x86_64_1.7.61/bombsquad_server --noninteractive
+# ONLY the game server. No background processes.
+CMD ["./BombSquad_Server_Linux_x86_64_1.7.61/bombsquad_server", "--noninteractive"]
+ 
